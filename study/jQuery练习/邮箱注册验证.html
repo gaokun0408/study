@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>邮箱注册</title>
+	<style>
+		form{width: 400px;height: 488px;
+			margin:100px auto;
+			border:1px solid red;}
+
+		label{display: block;
+			width: 400px;height: 50px;
+			font:24px "微软雅黑";
+			text-align: center;line-height: 50px;
+			margin-bottom: 30px;
+			color:#c9242b;}
+
+		input{width: 344px;height: 40px;
+			margin-left: 24px;}
+		
+		span{display: block;
+			width: 300px;height: 30px;
+			color:#eb6100;
+			line-height: 30px;
+			margin-left: 24px;}
+		
+		.accept{display: block;
+			width: 190px;height: 40px;
+			font:16px "微软雅黑";
+			color:#fff;
+			background-color:#c9242b;
+			line-height: 30px;
+			margin-top: 40px;
+			margin-left: 180px;}
+
+	</style>
+</head>
+<body>
+	<form action="">
+		<label>邮箱注册</label>
+		<input type="text" id="e-mail" placeholder="请输入邮箱">
+		<span class="tip" id="tip"></span>
+
+		<input type="text" id="password" placeholder="请输入密码">
+		<span class="tip" id="tip1"></span>
+		
+		<input type="text" id="user" placeholder="请输入用户名">
+		<span class="tip" id="tip2"></span>
+
+		<input type="text" id="idcard" placeholder="请输入身份证号码">
+		<span class="tip" id="tip3"></span>
+
+		<input type="submit" value="接受协议并注册" class="accept">
+	</form>
+<script>
+	window.onload = function(){  
+		var eMail = document.getElementById('e-mail');
+		var password = document.getElementById('password');
+		var username = document.getElementById('user');
+		var idcard = document.getElementById('idcard');
+		var tip = document.getElementById('tip');
+		var tip1 = document.getElementById('tip1');
+		var tip2 = document.getElementById('tip2');
+		var tip3 = document.getElementById('tip3');
+
+		//邮箱失去焦点时触发
+		eMail.onblur = function(){ //失去焦点时触发
+			var email = this.value;
+			// console.log(email);
+			trim(email); //去空格
+			if(checkemail(eMail.value)){
+				tip.innerHTML = "恭喜你，输入正确";
+			}else{
+				tip.innerHTML = "邮箱输入错误,请更正";
+			}
+		}
+
+		//密码失去焦点时
+		password.onblur = function(){ //失去焦点时触发
+			var passtxt = this.value;
+			trim(passtxt); //去空格
+			if(pword(passtxt)){
+				tip1.innerHTML = "恭喜你，输入正确";
+			}else{
+				tip1.innerHTML = "密码输入错误,请更正";
+			}
+		}
+
+		//用户名失去焦点时
+		username.onblur = function(){ //失去焦点时触发
+			var usertxt = this.value;
+			trim(usertxt); //去空格
+
+			if(user(usertxt)){
+				tip2.innerHTML = "恭喜你，输入正确";
+			}else{
+				tip2.innerHTML = "用户名输入错误,请更正";
+			}
+		}
+
+		//身份证失去焦点时
+		idcard.onblur = function(){ //失去焦点时触发
+			var idtxt = this.value;
+			trim(idtxt); //去空格
+			if(idnum(idtxt)){
+				tip3.innerHTML = "恭喜你，输入正确";
+			}else{
+				tip3.innerHTML = "身份证输入错误,请更正";
+			}
+		}
+		//函数
+		//去空格
+		function trim(str){
+			var reg = /(^\s*)|(\s*$)/g;
+			return str.replace(reg,'');
+		}
+
+		// 邮箱正确格式
+		function checkemail(str){
+			var reg = /\w+((-w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+/;
+			return reg.test(str); //返回boolean,true或false
+		}
+
+		//密码
+		function pword(str){
+			var reg = /^[A-Za-z0-9_-]+$/;
+			return reg.test(str);
+		}
+
+		// 用户名
+		function user(str){
+			var reg = /^[A-Za-z0-9_\-\u4e00-\u9fa5]+$/;
+			return reg.test(str);
+		}
+
+		// 身份证
+		function idnum(str){
+			var reg = /\d{17}[\d|x]|\d{15}/;
+			return reg.test(str);
+		}
+
+	}
+
+</script>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>豆瓣数据创建页面</title>
+	<style>
+		body,h4,h5,h3,span,img{margin:0;padding:0;}
+	
+		.movie{width: 868px;
+        margin:50px auto;
+        overflow: hidden;}
+
+		.row{width: 336px;height: 140px;
+		margin-bottom: 40px;
+		float: left;margin-left: 96px;
+        border-bottom:1px solid #d1ccc7;}
+
+		h4{font:22px "微软雅黑";
+			font-weight: bold;
+			color:#333136;}
+
+		img{float: left;margin-right: 16px;}
+
+		h5{font:12px "微软雅黑";
+			color:#9aa5c3;}
+
+		span{font:30px "微软雅黑";
+			font-weight: 80px;
+			color:#ffb300;}
+
+		h3{display: block;
+			font:20px "微软雅黑";}
+
+		p{font:14px "微软雅黑";
+			margin-top: 0px;
+			color:#333331;}
+	</style>
+</head>
+<body>
+	<div class="movie" id="movie">
+		<div class="row">
+			<img src="img/pic1.jpg" alt="">
+			<h4 class="title">标题</h4>
+			<h5 class="etitle">英文标题</h5>
+			<span class="score">评分</span>
+			<p class="type">类型</p>
+			<h3 class="year">年份</h3>
+		</div>
+	</div>
+
+<script src = "js/data.js"></script> <!-- 引入data.js文件 -->
+<script>
+	window.onload = function(){  
+		var movie = document.getElementById('movie');
+		var dataEl = data;	
+		console.log(dataEl);
+		var subjects = data.subjects;
+		var str = '';
+		for(var i = 0; i < subjects.length; i++){
+			var genres = subjects[i].genres;
+			var typeStr = genres.join(',');
+			var score = subjects[i].genres;
+
+			str += '<div class= "row">'+
+			'<img src='+subjects[i].images.medium+' >'+
+			'<h4>'+subjects[i].title + '</h4>'+
+			'<h5>'+subjects[i].original_title+'</h5>'+
+			'<span>'+subjects[i].rating.average + '</span>'+
+			'<p>'+subjects[i]. genres.join(',')+ '</p>'+ 
+			'<h3>'+subjects[i].year + '</h3>'+
+			'</div>';
+
+		}
+		movie.innerHTML = str;
+		console.log(str);
+		console.log(typeof(genres));
+		console.log(typeStr);
+
+
+	}
+
+</script>
+</html>

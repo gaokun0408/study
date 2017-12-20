@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>tab切换菜单</title>
+	<style>
+		span{display: block;}
+		.setab{color:red;}
+		
+		.tab{width: 40px;height: 20px;
+			float: left;margin-left: 100px;}
+
+		.box{width: 100px;height: 100px;
+			position: absolute;
+			top: 50px;left: 80px;
+			display: none;
+			border:2px solid red;}
+	</style>
+</head>
+<body>
+	<div class="tabbox" id="tabbox">
+		<div class="tab-nav" id="tab-nav">
+			<span class="tab">Tab1</span>
+			<span class="tab">Tab2</span>
+			<span class="tab">Tab3</span>
+		</div>
+	</div>
+
+	<div class="tabcon" id="tabcon">
+		<div class="box">
+			111
+		</div>
+
+		<div class="box">
+			222
+		</div>
+
+		<div class="box">
+			333
+		</div>
+	</div> 
+
+<script  src="js/jquery-1.8.3.min.js"></script>	
+<script>
+	$(document).ready(function(){
+
+		$('.tab').click(function(){
+			var index = $('.tab').index($(this));
+			console.log(index);
+			$(this).parents().siblings().find('.box').hide();
+			$('.tab').eq(index).css('color','#000');
+			$('.box').eq(index).show();
+			$(this).css('color','red');
+		})
+		
+	})
+
+</script>
+</body>
+</html>

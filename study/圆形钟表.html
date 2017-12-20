@@ -1,0 +1,88 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <title>圆形钟表</title>
+    <style>
+    body,.box{margin:0;padding:0;}
+
+  .box{width: 514px;height: 546px;
+    margin:50px auto;
+    background-color: #e7e7e7;
+    border:1px solid red;}
+
+  .circle{width: 350px;height: 350px;
+    margin:74px auto;
+    position: relative;
+    border-radius: 50%;
+    background-color: #c58740;
+    border:12px solid #fff;}
+  
+  .litbox{width: 24px;height: 24px;
+    margin:158px auto;
+    border-radius: 50%;
+    background-color: #fff;}
+
+  .hour{width: 14px;height: 90px;
+    position: absolute;
+    top: 86px;left: 166px;
+    border-radius: 10px;
+    transform-origin:center bottom;
+    background-color: #fff;}
+
+  .minues{width: 10px;height: 124px;
+    position: absolute;
+    top: 52px;left: 174px;
+    border-radius: 10px;
+    transform-origin:6% bottom;
+    background-color: #fff;}
+
+  .seconds{width: 8px;height: 150px;
+    position: absolute;
+    top: 22px;left: 170px;
+    border-radius: 10px;
+    transform-origin:center bottom;
+    background-color: #fff;}
+  
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="circle">
+        <div class="litbox">
+          <span class="hour" id="hour"></span>
+          <span class="minues" id="minu"></span>
+          <span class="seconds" id="seco"></span>
+        </div>
+      </div>
+    </div>
+
+  <script>
+  function G(sId){
+    return document.getElementById(sId);
+  }   
+
+  window.onload = function(){
+    var ohour = G('hour');
+    var ominu = G('minu');
+    var oseco = G('seco');
+    var timeId = null;
+
+    timeId = setInterval(function(){
+      var now = new Date();
+      var hourNum = now.getHours();
+      var minuNum = now.getMinutes();
+      var secoNum = now.getSeconds();
+
+      var hourDeg = 360/12*hourNum;
+      var minuDeg = 360/60*minuNum;
+
+      ohour.style.webkitTransform = "rotate("+ hourDeg +"deg)";
+      ominu.style.webkitTransform = "rotate("+ minuDeg +"deg)";
+      oseco.style.webkitTransform = "rotate("+ (secoNum *6) +"deg)";
+    },1000)
+
+  }
+ </script>
+  </body>
+  </html>
